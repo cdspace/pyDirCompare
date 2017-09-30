@@ -27,9 +27,18 @@ def getFileInfo( inDir, pathDict ):
             pathDict.update( { h : fullPath } )
 
 
-    
-dir1Name = "Jason SD BAK"
-dir2Name = "jason gs7 bak"
+# run 1    
+##dir1Name = "1_Jason SD BAK"
+##dir2Name = "2_jason gs7 bak"
+
+# run 2
+dir1Name = "1_Jason SD BAK"
+dir2Name = "3_GS4bak"
+
+# run 3
+##dir1Name = "2_jason gs7 bak"
+##dir2Name = "3_GS4bak"
+
 baseDir = "/Users/cdspace/Desktop/"
 dir1 = baseDir + dir1Name
 dir2 = baseDir + dir2Name
@@ -66,12 +75,15 @@ print( "{} files loaded".format( len( files2 ) ) )
 #print( "dir2 has {} files".format( len( files2 ) ) )
 
 # initialize the output files
-sameFile = open( outDir + dir1Name.replace( " ", "_" ) + "_sameFiles.csv", 'w' )
-sameFile.close()
-dir1Files = open( outDir + dir1Name.replace( " ", "_" ) + "_onlyDir1.csv", 'w' )
-dir1Files.close()
-dir2Files = open( outDir + dir2Name.replace( " ", "_" ) + "_onlyDir2.csv", 'w' )
-dir2Files.close()
+if not os.exists( outDir + dir1Name.replace( " ", "_" ) + "_sameFiles.csv" ):
+    sameFile = open( outDir + dir1Name.replace( " ", "_" ) + "_sameFiles.csv", 'w' )
+    sameFile.close()
+if not os.exists( outDir + dir1Name.replace( " ", "_" ) + "_onlyDir1.csv" ):
+    dir1Files = open( outDir + dir1Name.replace( " ", "_" ) + "_onlyDir1.csv", 'w' )
+    dir1Files.close()
+if not os.exists( outDir + dir2Name.replace( " ", "_" ) + "_onlyDir2.csv" ):
+    dir2Files = open( outDir + dir2Name.replace( " ", "_" ) + "_onlyDir2.csv", 'w' )
+    dir2Files.close()
 
 # now compare them both, by keys in the dicts
 # start with dir1
