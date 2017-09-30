@@ -1,6 +1,8 @@
 import os
+import os.path
 import hashlib
 import csv
+import shutil
 
 # TODO need a recursive directory follower function to get files
 # perhaps yeild isn't necessary here
@@ -31,7 +33,8 @@ dir2Name = "jason gs7 bak"
 baseDir = "/Users/cdspace/Desktop/"
 dir1 = baseDir + dir1Name
 dir2 = baseDir + dir2Name
-outDir = "/Users/cdspace/Desktop/bakCompare/"
+outDir = baseDir + "bakCompare/"
+finalCopyDir = baseDir + "finalCopy/"
 
 # we don't know the paths of the files, so let's keep a dict of lists, filename the key
 # the filenames between backups should be the same
@@ -145,3 +148,25 @@ dir2CSV = csv.writer( dir2Files )
 for key, value in only2Files.items():
     dir2CSV.writerow( [ key, value ] )
 dir2Files.close()
+
+print( "Copy the duplicates to an output directory..." )
+
+# now copy the duplicates to a new directory
+# preserve the path beyond dir1/2
+for fKey, fName in bothFiles.items():
+
+    # get the 1/2 input dirs, and the final output dir
+    outfNameCopy = fName[ 0 ].replace( dir1, finalCopyDir[ : -1 ] )
+    outDirCopy = outfNameCopy[ : outfNameCopy.rindex( "/" ) + 1 ]
+    
+    # if the directory isn't there, make it
+    if not os.path.exists( outDirCopy ):
+        os.makedirs( outDirCopy )
+
+    # copy fName[ 0 ] into the output
+    shutil.copyfile( fName[ 0 ], outfNameCopy )
+
+    # and delete the originals
+    os.remove( fName[ 0 ] )
+    os.remove( fName[ 1 ] )
+    
