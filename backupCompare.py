@@ -32,12 +32,16 @@ def getFileInfo( inDir, pathDict ):
 ##dir2Name = "2_jason gs7 bak"
 
 # run 2
-dir1Name = "1_Jason SD BAK"
-dir2Name = "3_GS4bak"
+##dir1Name = "1_Jason SD BAK"
+##dir2Name = "3_GS4bak"
 
 # run 3
 ##dir1Name = "2_jason gs7 bak"
 ##dir2Name = "3_GS4bak"
+
+# run 1 to run 2 final
+dir1Name = "run1_finalCopy"
+dir2Name = "run2_finalCopy"
 
 baseDir = "/Users/cdspace/Desktop/"
 dir1 = baseDir + dir1Name
@@ -75,13 +79,13 @@ print( "{} files loaded".format( len( files2 ) ) )
 #print( "dir2 has {} files".format( len( files2 ) ) )
 
 # initialize the output files
-if not os.exists( outDir + dir1Name.replace( " ", "_" ) + "_sameFiles.csv" ):
+if not os.path.exists( outDir + dir1Name.replace( " ", "_" ) + "_sameFiles.csv" ):
     sameFile = open( outDir + dir1Name.replace( " ", "_" ) + "_sameFiles.csv", 'w' )
     sameFile.close()
-if not os.exists( outDir + dir1Name.replace( " ", "_" ) + "_onlyDir1.csv" ):
+if not os.path.exists( outDir + dir1Name.replace( " ", "_" ) + "_onlyDir1.csv" ):
     dir1Files = open( outDir + dir1Name.replace( " ", "_" ) + "_onlyDir1.csv", 'w' )
     dir1Files.close()
-if not os.exists( outDir + dir2Name.replace( " ", "_" ) + "_onlyDir2.csv" ):
+if not os.path.exists( outDir + dir2Name.replace( " ", "_" ) + "_onlyDir2.csv" ):
     dir2Files = open( outDir + dir2Name.replace( " ", "_" ) + "_onlyDir2.csv", 'w' )
     dir2Files.close()
 
